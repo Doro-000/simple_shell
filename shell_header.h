@@ -11,6 +11,11 @@
 #include <errno.h>
 #include <dirent.h>
 
+/*Constants*/
+#define EXTERNAL_COMMAND 1
+#define INTERNAL_COMMAND 2
+#define SPECIAL_COMMAND 3
+
 /*helper_functions*/
 void print(char *);
 
