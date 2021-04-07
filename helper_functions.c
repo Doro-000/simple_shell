@@ -48,3 +48,20 @@ int parse_input(char *input, char **av)
 	return (EXTERNAL_COMMAND);
 	/*works only for commands with absoulte paths and/or arguments, like "/bin/ls -l"*/s
 }
+
+/**
+ * clean_input - removes new line from a string
+ * @str: string to be used
+ *
+ * Return: void
+ */
+void clean_input(char *str)
+{
+	int i = 0;
+
+	while(str[i] != '\n')
+	{
+		i++;
+	}
+	str[i] = '\0';
+}
