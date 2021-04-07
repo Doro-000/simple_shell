@@ -46,20 +46,3 @@ int main(int argc, char *argv[], char *env[])
 	free(command);
 	return (0);
 }
-
-/**
- * clean_input - removes new line from a string
- * @str: string to be used
- *
- * Return: void
- */
-void clean_input(char *str)
-{
-	int i = 0;
-
-	while(str[i] != '\n')
-	{
-		i++;
-	}
-	str[i] = '\0';
-}
