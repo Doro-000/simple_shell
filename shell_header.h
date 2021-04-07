@@ -11,9 +11,7 @@
 #include <errno.h>
 #include <dirent.h>
 
-
-
-
-
+/*helper_functions*/
+void print(char *);
 
 #endif /*SHELL_H*/

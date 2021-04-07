@@ -1,5 +1,11 @@
 #include "shell_header.h"
 
+/**
+ * print - prints a string to stdout
+ * @string: string to be printed
+ *
+ * Return: void, return nothing
+ */
 void print(char *string)
 {
 	int i = 0;
