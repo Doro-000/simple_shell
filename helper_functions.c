@@ -22,11 +22,12 @@ void print(char *string)
  * @input: input to be parsed
  * @av: array to store tokens of the input
  *
- * Return: an integer that describes the type of input, see shell_header.h
+ * Return: array of tokens
  */
-int parse_input(char *input, char **av)
+char **parse_input(char *input)
 {
 	int num_delim = 0, i = 0;
+	char **av;
 	char *token;
 
 	while (input[i] != '\0')
@@ -45,7 +46,7 @@ int parse_input(char *input, char **av)
 		i++;
 	}
 	av[i] = NULL;
-	return (EXTERNAL_COMMAND);
+	return (av);
 	/*works only for commands with absoulte paths and/or arguments, like "/bin/ls -l"*/s
 }
 
@@ -64,4 +65,9 @@ void clean_input(char *str)
 		i++;
 	}
 	str[i] = '\0';
+}
+
+int get_type(char *command);
+{
+	;
 }

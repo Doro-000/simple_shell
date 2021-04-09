@@ -18,7 +18,7 @@
 
 /*helper_functions*/
 void print(char *);
-int parse_input(char *input, char **av);
+char **parse_input(char *input);
 void clean_input(char *str);
 
 #endif /*SHELL_H*/
