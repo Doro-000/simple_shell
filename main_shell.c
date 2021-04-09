@@ -8,9 +8,9 @@
  *
  * Return: 0 on success
  */
-int main(int argc, char *argv[], char *env[])
+int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)), char *env[] __attribute__((unused)))
 {
-	char **commands, current_command;
+	char **commands, **current_command;
 	char *line;
 	size_t n;
 	int i;
