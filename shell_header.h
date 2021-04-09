@@ -16,7 +16,7 @@
 #define INTERNAL_COMMAND 2
 #define SPECIAL_COMMAND 3
 
-/*helper_functions*/
+/*helpers*/
 void print(char *);
 char **tokenizer(char *, char *);
 void remove_newline(char *);
