@@ -15,6 +15,7 @@ char **tokenizer(char *input_string, char *delim)
 	char *input = malloc(sizeof(*input) * (_strlen(input_string) + 1));
 
 	_strcpy(input_string, input);
+	remove_newline(input);
 	for (; input[i] != '\0'; i++)
 	{
 		if (input[i] == delim[0])
@@ -25,7 +26,6 @@ char **tokenizer(char *input_string, char *delim)
 	token = strtok(input, delim);
 	while (token != NULL)
 	{
-		remove_newline(token);
 		av[i] = token;
 		token = strtok(NULL, delim);
 		i++;
