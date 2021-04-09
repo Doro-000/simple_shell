@@ -76,10 +76,8 @@ void remove_newline(char *str)
  */
 void _strcpy(char *source, char *dest)
 {
-	int len = _strlen(source);
 	int i = 0;
 
-	dest = malloc(sizeof(*dest) * (len + 1));
 	for (; source[i] != '\0'; i++)
 		dest[i] = source[i];
 	dest[i] = '\0';
