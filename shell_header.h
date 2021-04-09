@@ -23,4 +23,7 @@ void remove_newline(char *);
 int _strlen(char *);
 void _strcpy(char *, char*);
 
+/*helpers2*/
+int _strcmp(char *, char *);
+
 #endif /*SHELL_H*/
