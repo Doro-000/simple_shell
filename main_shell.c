@@ -4,46 +4,38 @@
  * main - entry point, the main shell
  * @argc: number of arguments passed to the shell
  * @argv: list of arguments passed to the shell
- * @env: list of environment variables passed to the shell
+ * @env: list of environment variables available to the shell
  *
  * Return: 0 on success
  */
 int main(int argc, char *argv[], char *env[])
 {
-	char *command = NULL;
-	size_t size = 0;
+	char **commands, current_command;
+	char *line;
+	size_t n;
+	int i;
 	pid_t child;
-	int error_num, type_of_input;
-	char **av;
 
-	/*Interactive mode*/
-	while(1)
+	while (1)
 	{
-		print("> "); /*Needs proper prompt*/
-		getline(&command, &size, stdin);
-		clean_input(command);
-		/*input assumed to be a command with arguments*/
-		av = tokenize_input(command);
-		type_of_input = get_input(av[0]);
-
-		if ((child = fork()) == 0)
+		print("$ ");
+		if (getline(&line, &n, stdin) == -1);
+			break;
+		commands = tokenizer(line, ";");
+		for (i = 0; commands[i] != NULL; i++)
 		{
-			if (type_of_input == EXTERNAL_COMMAND)/*/bin/ls, ls, ./some_program...*/
+			current_command = tokenizer(commands[i], " ");
+			if ((child = fork()) == 0)
 			{
-				if (execve(av[0], av, NULL) == -1)
-					perror("Error")
+				if (execve(current_command[0], current_command, NULL) == -1)
+				{
+					perror("$");
+				}
 			}
-			else if (type_of_input == INTERNAL_COMMAND)/*exit, env, cd ...*/
-				; /*To be added*/
-			else if (type_of_input == SPECIAL_COMMAND)/*CTRL-D, CTRL-C...*/
-				;/*To be added*/
-		}
-		else
-		{
-			wait(NULL);
-			free(av);
-		}
+			else
+				wait(NULL);
+		}	
 	}
-	free(command);
+	free(line);
 	return (0);
 }
