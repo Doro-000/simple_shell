@@ -23,7 +23,7 @@ int main(int argc, char *argv[], char *env[])
 		getline(&command, &size, stdin);
 		clean_input(command);
 		/*input assumed to be a command with arguments*/
-		av = parse_input(command);
+		av = tokenize_input(command);
 		type_of_input = get_input(av[0]);
 
 		if ((child = fork()) == 0)
