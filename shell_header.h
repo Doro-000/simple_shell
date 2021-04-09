@@ -20,7 +20,7 @@
 void print(char *);
 char **tokenizer(char *, char *);
 void remove_newline(char *);
-void _strlen(char *);
-void _strcpy(char *, char*);
+int _strlen(char *);
+char *_strcpy(char *, char*);
 
 #endif /*SHELL_H*/

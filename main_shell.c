@@ -10,9 +10,10 @@
  */
 int main()
 {
-	char **commands, **current_command;
-	char *line;
-	size_t n;
+	char **commands = NULL;
+        char **current_command = NULL;
+	char *line = NULL;
+	size_t n = 0;
 	int i;
 	pid_t child;
 
