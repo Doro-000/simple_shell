@@ -1,6 +1,37 @@
 #include "shell_header.h"
 
 /**
+ * tokenizer - tokenizes input and stores it into an array
+ * @input: input to be parsed
+ * @delim: delimiter to be used, needs to be one character string
+ *
+ * Return: array of tokens
+ */
+char **tokenizer(char *input, char *delim)
+{
+	int num_delim = 0, i = 0;
+	char **av;
+	char *token;
+
+	for (; input[i] != '\0'; i++)
+	{
+		if (input[i] == delim[0])
+			num_delim++;
+	}
+	i = 0;
+	av = malloc(sizeof(*av) * (num_delim + 2));
+	token = strtok(input, delim);
+	while (token != NULL)
+	{
+		av[i] = token;
+		token = strtok(NULL, delim);
+		i++;
+	}
+	av[i] = NULL;
+	return (av);
+}
+
+/**
  * print - prints a string to stdout
  * @string: string to be printed
  *
@@ -15,56 +46,20 @@ void print(char *string)
 }
 
 /**
- * tokenize_input - parses and tokenizes input from user
- * @input: input to be parsed
- * @av: array to store tokens of the input
- *
- * Return: array of tokens
- */
-char **tokenize_input(char *input)
-{
-	int num_delim = 0, i = 0;
-	char **av;
-	char *token;
-
-	for (; input[i] != '\0'; i++)
-	{
-		if (input[i] == ' ')
-			num_delim++;
-	}
-	i = 0;
-	av = malloc(sizeof(*av) * (num_delim + 2));
-	token = strtok(input, " ");
-	while (token != NULL)
-	{
-		av[i] = token;
-		token = strtok(NULL, " ");
-		i++;
-	}
-	av[i] = NULL;
-	return (av);
-}
-
-/**
- * clean_input - removes new line from a string
+ * remove_newline - removes new line from a string
  * @str: string to be used
  *
  * Return: void
  */
-void clean_input(char *str)
+void remove_newline(char *str)
 {
 	int i = 0;
 
-	while (str[i] != '\n')
+	while (str[i] != '\0')
 	{
-		if (atr[i] == EOF)
-			exit(EXIT_FAILURE);
+		if (str[i] == '\n')
+			break;
 		i++;
 	}
 	str[i] = '\0';
-}
-
-int get_type(char *command);
-{
-	;
 }
