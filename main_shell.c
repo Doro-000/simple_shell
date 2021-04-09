@@ -8,7 +8,7 @@
  *
  * Return: 0 on success
  */
-int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)), char *env[] __attribute__((unused)))
+int main()
 {
 	char **commands, **current_command;
 	char *line;
@@ -19,7 +19,7 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)),
 	while (1)
 	{
 		print("$ ");
-		if (getline(&line, &n, stdin) == -1);
+		if (getline(&line, &n, stdin) == -1)
 			break;
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
@@ -34,7 +34,7 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)),
 			}
 			else
 				wait(NULL);
-		}	
+		}
 	}
 	free(line);
 	return (0);
