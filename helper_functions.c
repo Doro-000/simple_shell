@@ -10,31 +10,27 @@ void print(char *string)
 {
 	int i = 0;
 
-	while (string[i] != '\0')
-	{
+	for (; string[i] != '\0'; i++)
 		write(1, string[i], 1);
-		i++;
-	}
 }
 
 /**
- * parse_input - parses and tokenizes input from user
+ * tokenize_input - parses and tokenizes input from user
  * @input: input to be parsed
  * @av: array to store tokens of the input
  *
  * Return: array of tokens
  */
-char **parse_input(char *input)
+char **tokenize_input(char *input)
 {
 	int num_delim = 0, i = 0;
 	char **av;
 	char *token;
 
-	while (input[i] != '\0')
+	for (; input[i] != '\0'; i++)
 	{
 		if (input[i] == ' ')
 			num_delim++;
-		i++;
 	}
 	i = 0;
 	av = malloc(sizeof(*av) * (num_delim + 2));
@@ -47,7 +43,6 @@ char **parse_input(char *input)
 	}
 	av[i] = NULL;
 	return (av);
-	/*works only for commands with absoulte paths and/or arguments, like "/bin/ls -l"*/s
 }
 
 /**
