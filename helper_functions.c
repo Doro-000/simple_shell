@@ -12,9 +12,9 @@ char **tokenizer(char *input_string, char *delim)
 	int num_delim = 0, i = 0;
 	char **av = NULL;
 	char *token = NULL;
-	char *input = NULL;
+	char *input = malloc(sizeof(*input) * (_strlen(input_string) + 1));
 
-	input = _strcpy(input_string, input);
+	_strcpy(input_string, input);
 	for (; input[i] != '\0'; i++)
 	{
 		if (input[i] == delim[0])
@@ -74,16 +74,15 @@ void remove_newline(char *str)
  *
  * Return: void
  */
-char *_strcpy(char *source, char *dest)
+void _strcpy(char *source, char *dest)
 {
 	int len = _strlen(source);
 	int i = 0;
 
 	dest = malloc(sizeof(*dest) * (len + 1));
-	for (; dest[i] != '\0'; i++)
+	for (; source[i] != '\0'; i++)
 		dest[i] = source[i];
 	dest[i] = '\0';
-	return (dest);
 }
 
 /**
