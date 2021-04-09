@@ -23,7 +23,7 @@ char **tokenizer(char *input, char *delim)
 	token = strtok(input, delim);
 	while (token != NULL)
 	{
-		av[i] = token;
+		av[i] = remove_newline(token);
 		token = strtok(NULL, delim);
 		i++;
 	}
