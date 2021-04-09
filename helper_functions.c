@@ -55,8 +55,10 @@ void clean_input(char *str)
 {
 	int i = 0;
 
-	while(str[i] != '\n')
+	while (str[i] != '\n')
 	{
+		if (atr[i] == EOF)
+			exit(EXIT_FAILURE);
 		i++;
 	}
 	str[i] = '\0';
