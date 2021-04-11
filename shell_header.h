@@ -44,5 +44,6 @@ char *_strcat(char *, char *);
 int parse_command(char *);
 void execute_command(char **, int);
 char *check_path(char *);
+void (*get_func(char *))(char **);
 
 #endif /*SHELL_H*/
