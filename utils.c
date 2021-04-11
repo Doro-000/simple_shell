@@ -13,8 +13,7 @@
 int parse_command(char *command)
 {
 	int i;
-	/*Add one to the index whenever you add a command*/
-	char *internal_command[3] = {"env", "exit", NULL};
+	char *internal_command[] = {"env", "exit", NULL};
 	char *path = NULL;
 
 	for (i = 0; command[i] != '\0'; i++)
@@ -104,4 +103,46 @@ void (*get_func(char *command))(char **)
 			return (mapping[i].func);
 	}
 	return (NULL);
+}
+
+/**
+ * _getenv - gets the value of an environment variable from the environment list
+ * @name: name of the environment variable
+ *
+ * Return: the value of the variable as a string
+ */
+char *_getenv(const char *name)
+{
+	int pairs = 0, i = 0, flag = 0;
+	char **keys = NULL;
+	char **values = NULL;
+	char *token = NULL;
+	char *saveptr = NULL;
+	char *final_val = NULL;
+
+	for (; environ[pairs] != NULL; pairs++)
+		;
+	keys = malloc(sizeof(*keys) * pairs);
+	values = malloc(sizeof(*values)  * pairs);
+	for (; environ[i] != NULL; i++)
+	{
+		token = _strtok_r(environ[i], "=", &saveptr);
+		keys[i] = token;
+		values[i] = saveptr;
+	}
+	for (i = 0; i < pairs; i++)
+	{
+		if (_strcmp(keys[i], name) == 0)
+		{
+			flag = 1;
+			final_val = values[i];
+			break;
+		}
+	}
+	free(keys);
+	free(values);
+	if (flag)
+		return (final_val);
+	else
+		return (NULL);
 }
