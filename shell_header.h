@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <dirent.h>
+#include <signal.h>
 
 /*Constants*/
 #define EXTERNAL_COMMAND 1
