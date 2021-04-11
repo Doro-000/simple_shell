@@ -30,6 +30,8 @@ typedef strcut map
 	void (*func)(char **command);
 } function_map;
 
+extern char **environ;
+
 /*helpers*/
 void print(char *);
 char **tokenizer(char *, char *);
