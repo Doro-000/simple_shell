@@ -12,6 +12,7 @@ char **tokenizer(char *input_string, char *delim)
 	int num_delim = 0, i = 0;
 	char **av = NULL;
 	char *token = NULL;
+	char *save_ptr = NULL;
 	char *input = malloc(sizeof(*input) * (_strlen(input_string) + 1));
 
 	_strcpy(input_string, input);
@@ -23,11 +24,11 @@ char **tokenizer(char *input_string, char *delim)
 	}
 	i = 0;
 	av = malloc(sizeof(*av) * (num_delim + 2));
-	token = strtok(input, delim);
+	token = _strtok_r(input, delim, &save_ptr);
 	while (token != NULL)
 	{
 		av[i] = token;
-		token = strtok(NULL, delim);
+		token = _strtok_r(NULL, delim, &save_ptr);
 		i++;
 	}
 	av[i] = NULL;
