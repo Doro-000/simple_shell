@@ -17,6 +17,18 @@
 #define PATH_COMMAND 3
 #define INVALID_COMMAND -1
 
+/**
+ * struct map - a struct that maps a command name to a function
+ *
+ * @command_name: name of the command
+ * @func: the function that executes the command
+*/
+typedef strcut map
+{
+	char *command_name;
+	void (*func)(char **command);
+} function_map;
+
 /*helpers*/
 void print(char *);
 char **tokenizer(char *, char *);
