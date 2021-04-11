@@ -28,9 +28,7 @@ int parse_command(char *command)
 			return (INTERNAL_COMMAND);
 	}
 	if ((path = check_path(command)) != NULL)
-	{
 		return (PATH_COMMAND);
-	}
 
 	return (INVALID_COMMAND);
 }
@@ -49,9 +47,7 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == EXTERNAL_COMMAND)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
-		{
 			perror("$");
-		}
 	}
 	else if (command == PATH_COMMAND)
 	{
@@ -64,7 +60,7 @@ void execute_command(char **tokenized_command, int command_type)
 		func(tokenized_command);
 	}
 	else
-		;
+		return; /*need to handle invalid command*/
 }
 
 /**
@@ -85,6 +81,27 @@ char *check_path(char *command)
 		temp = _strcat(test, command);
 		if (access(temp, F_OK) == 0)
 			return (temp);
+	}
+	return (NULL);
+}
+
+/**
+ * get_func - retrives a function based on the command given and a mapping
+ * @command: string to check against the mapping
+ *
+ * Return: pointer to the proper function, or null on fail
+ */
+void (*get_func(char *command))(char **)
+{
+	int i;
+	function_map mapping[] = {
+		{"env", env}, {"exit", exit}
+	};
+
+	for (i = 0; i < 2; i++)
+	{
+		if (_strcmp(command, mapping[i].command_name) == 0)
+			return (mapping[i].func);
 	}
 	return (NULL);
 }
