@@ -17,7 +17,7 @@ char *_strtok_r (char *string, const char *delim, char **save_ptr)
 
 	if (*string == '\0')
 	{
-		*save_ptr = s;
+		*save_ptr = string;
 		return NULL;
 	}
 
