@@ -42,6 +42,12 @@ void _strcpy(char *, char*);
 /*helpers2*/
 int _strcmp(char *, char *);
 char *_strcat(char *, char *);
+int _strspn(char *, char *);
+int _strcspn(char *, char *);
+char *_strchr(char *, char);
+
+/*helpers3*/
+char *_strtok_r (char *, char *, char **);
 
 /*utils*/
 int parse_command(char *);
