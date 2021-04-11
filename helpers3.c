@@ -8,7 +8,7 @@
  *
  * Return: The next available token
  */
-char *_strtok_r (char *string, const char *delim, char **save_ptr)
+char *_strtok_r (char *string, char *delim, char **save_ptr)
 {
 	char *end;
 
