@@ -14,7 +14,7 @@ int main()
         char **current_command = NULL;
 	char *line = NULL;
 	size_t n = 0;
-	int i;
+	int i, type_command;
 	pid_t child;
 
 	while (1)
@@ -26,13 +26,9 @@ int main()
 		for (i = 0; commands[i] != NULL; i++)
 		{
 			current_command = tokenizer(commands[i], " ");
+			type_command = parse_command(current_command[0]);
 			if ((child = fork()) == 0)
-			{
-				if (execve(current_command[0], current_command, NULL) == -1)
-				{
-					perror("$");
-				}
-			}
+				execute_command(current_command, type_command);
 			else
 				wait(NULL);
 		}
