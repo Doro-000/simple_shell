@@ -24,7 +24,7 @@
  * @command_name: name of the command
  * @func: the function that executes the command
 */
-typedef strcut map
+typedef struct map
 {
 	char *command_name;
 	void (*func)(char **command);
