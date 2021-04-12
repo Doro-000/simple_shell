@@ -48,7 +48,7 @@ void execute_command(char **tokenized_command, int command_type)
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
 			perror("$");
 	}
-	else if (command == PATH_COMMAND)
+	else if (command_type == PATH_COMMAND)
 	{
 		tokenized_command[0] = check_path(tokenized_command[0]);
 		execute_command(tokenized_command, EXTERNAL_COMMAND);
@@ -77,7 +77,7 @@ char *check_path(char *command)
 	for (i = 0; path_array[i] != NULL; i++)
 	{
 		temp = _strcat(path_array[i], "/");
-		temp = _strcat(test, command);
+		temp = _strcat(temp, command);
 		if (access(temp, F_OK) == 0)
 			return (temp);
 	}
@@ -111,7 +111,7 @@ void (*get_func(char *command))(char **)
  *
  * Return: the value of the variable as a string
  */
-char *_getenv(const char *name)
+char *_getenv(char *name)
 {
 	int pairs = 0, i = 0, flag = 0;
 	char **keys = NULL;
