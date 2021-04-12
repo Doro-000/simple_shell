@@ -54,6 +54,9 @@ int parse_command(char *);
 void execute_command(char **, int);
 char *check_path(char *);
 void (*get_func(char *))(char **);
-char *_getenv(const char *);
+char *_getenv(char *);
+
+/*built_in*/
+void env(char **);
 
 #endif /*SHELL_H*/
