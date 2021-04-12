@@ -59,7 +59,7 @@ void execute_command(char **tokenized_command, int command_type)
 		func(tokenized_command);
 	}
 	else
-		return; /*need to handle invalid command*/
+		print("$: Command not found"); /*need to be printed to stderr*/
 }
 
 /**
