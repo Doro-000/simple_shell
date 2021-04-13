@@ -27,10 +27,15 @@ int main()
 		{
 			current_command = tokenizer(commands[i], " ");
 			type_command = parse_command(current_command[0]);
-			if ((child = fork()) == 0)
-				execute_command(current_command, type_command);
+			if (type_command == EXTERNAL_COMMAND || type_command == PATH_COMMAND)
+			{
+				if ((child = fork()) == 0)
+					execute_command(current_command, type_command);
+				else
+					wait(NULL);
+			}
 			else
-				wait(NULL);
+				execute_command(current_command, type_command);
 		}
 	}
 	free(line);
