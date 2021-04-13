@@ -59,5 +59,6 @@ char *_getenv(char *);
 
 /*built_in*/
 void env(char **);
+void quit(char **);
 
 #endif /*SHELL_H*/
