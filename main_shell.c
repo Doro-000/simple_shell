@@ -21,7 +21,7 @@ int main()
 	{
 		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
-			break;
+			exit(EXIT_SUCCESS);
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{
