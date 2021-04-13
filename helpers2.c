@@ -11,13 +11,13 @@ int _strcmp(char *first, char *second)
 {
 	int i = 0;
 
-	while(first[i] != '\0')
+	while (first[i] != '\0')
 	{
 		if (first[i] != second[i])
 			break;
 		i++;
 	}
-	return first[i] - second[i];
+	return (first[i] - second[i]);
 }
 
 /**
@@ -29,7 +29,7 @@ int _strcmp(char *first, char *second)
  */
 char *_strcat(char *destination, char *source)
 {
-	char *new_string = NULL; 
+	char *new_string = NULL;
 	int len_dest = _strlen(destination);
 	int len_source = _strlen(source);
 
@@ -63,7 +63,7 @@ int _strspn(char *str1, char *str2)
 }
 
 /**
- * _strcspn - calculates segment of str1, which consists of characters not in str2
+ * _strcspn - computes segment of str1 which consists of characters not in str2
  * @str1: string to be searched
  * @str2: string to be used
  *

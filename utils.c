@@ -6,8 +6,8 @@
  *
  * Return: constant representing the type of the command
  * Description - EXTERNAL_COMMAND (1) represents commands like /bin/ls
- * 		 INTERNAL_COMMAND (2) represents commands like exit, env
- * 		 PATH_COMMAND (3) represents commands found in the PATH like ls
+ *		 INTERNAL_COMMAND (2) represents commands like exit, env
+ *		 PATH_COMMAND (3) represents commands found in the PATH like ls
  *		 INVALID_COMMAND (-1) represents invalid commands
  */
 int parse_command(char *command)
@@ -35,8 +35,8 @@ int parse_command(char *command)
 
 /**
  * execute_command - executes a command based on it's type
- * @tokenized_command: tokenized format of the command (/bin/ls -l /bin == {/bin/ls, -l...})
- * @command_type - type of the command
+ * @tokenized_command: tokenized form of the command (ls -l == {ls, -l, NULL})
+ * @command_type: type of the command
  *
  * Return: void
  */
@@ -60,7 +60,7 @@ void execute_command(char **tokenized_command, int command_type)
 		func(tokenized_command);
 	}
 	if (command_type == INVALID_COMMAND)
-		print("$: Command not found\n"); /*need to be printed to stderr*/
+		print("$: Command not found\n");/*need to be printed to stderr*/
 }
 
 /**
@@ -106,7 +106,7 @@ void (*get_func(char *command))(char **)
 }
 
 /**
- * _getenv - gets the value of an environment variable from the environment list
+ * _getenv - gets the value of an environment variable
  * @name: name of the environment variable
  *
  * Return: the value of the variable as a string

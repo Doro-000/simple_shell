@@ -11,7 +11,7 @@
 int main()
 {
 	char **commands = NULL;
-        char **current_command = NULL;
+	char **current_command = NULL;
 	char *line = NULL;
 	size_t n = 0;
 	int i, type_command;
@@ -29,7 +29,8 @@ int main()
 			type_command = parse_command(current_command[0]);
 			if (type_command == EXTERNAL_COMMAND || type_command == PATH_COMMAND)
 			{
-				if ((child = fork()) == 0)
+				child = fork();
+				if (child == 0)
 					execute_command(current_command, type_command);
 				else
 					wait(NULL);

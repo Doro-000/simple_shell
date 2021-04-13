@@ -47,7 +47,7 @@ int _strcspn(char *, char *);
 char *_strchr(char *, char);
 
 /*helpers3*/
-char *_strtok_r (char *, char *, char **);
+char *_strtok_r(char *, char *, char **);
 int _atoi(char *);
 
 /*utils*/

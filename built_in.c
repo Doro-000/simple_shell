@@ -3,12 +3,9 @@
 
 /**
  * env - prints the current_environment
- * @tokenized_command - command entered
+ * @tokenized_command: command entered
  *
  * Return: void
- * Description - tokenized_command is used here to make the function
- 		comaptible for use in the function_map type, and hence is 
-		ignored because env doesn't use it
  */
 void env(char **tokenized_command __attribute__((unused)))
 {
@@ -23,7 +20,7 @@ void env(char **tokenized_command __attribute__((unused)))
 
 /**
  * quit - exits the shell
- * @tokenized_command - command entered
+ * @tokenized_command: command entered
  *
  * Return: void
  */

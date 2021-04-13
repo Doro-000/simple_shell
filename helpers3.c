@@ -8,7 +8,7 @@
  *
  * Return: The next available token
  */
-char *_strtok_r (char *string, char *delim, char **save_ptr)
+char *_strtok_r(char *string, char *delim, char **save_ptr)
 {
 	char *end;
 
@@ -18,26 +18,26 @@ char *_strtok_r (char *string, char *delim, char **save_ptr)
 	if (*string == '\0')
 	{
 		*save_ptr = string;
-		return NULL;
+		return (NULL);
 	}
 
-	string += strspn (string, delim);
+	string += strspn(string, delim);
 	if (*string == '\0')
 	{
 		*save_ptr = string;
-		return NULL;
+		return (NULL);
 	}
 
-	end = string + strcspn (string, delim);
+	end = string + strcspn(string, delim);
 	if (*end == '\0')
 	{
 		*save_ptr = end;
-		return string;
+		return (string);
 	}
 
 	*end = '\0';
 	*save_ptr = end + 1;
-	return string;
+	return (string);
 }
 
 /**
