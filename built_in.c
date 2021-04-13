@@ -27,16 +27,16 @@ void env(char **tokenized_command __attribute__((unused)))
  *
  * Return: void
  */
-void quit(char **tokenized_command)	
+void quit(char **tokenized_command)
 {
 	int num_token = 0;
 
-	for (tokenized_command[num_token] != NULL; num_token++)
+	for (; tokenized_command[num_token] != NULL; num_token++)
 		;
 	if (num_token == 1)
 		exit(EXIT_SUCCESS);
 	else if (num_token == 2)
 		exit(_atoi(tokenized_command[1]));
 	else
-		print("$: exit doesn't take more than one argument");
+		print("$: exit doesn't take more than one argument\n");
 }

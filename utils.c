@@ -3,7 +3,7 @@
 /**
  * parse_command - decides the type of the command
  * @command: command to be parsed
- * 
+ *
  * Return: constant representing the type of the command
  * Description - EXTERNAL_COMMAND (1) represents commands like /bin/ls
  * 		 INTERNAL_COMMAND (2) represents commands like exit, env
@@ -59,7 +59,7 @@ void execute_command(char **tokenized_command, int command_type)
 		func(tokenized_command);
 	}
 	else
-		print("$: Command not found"); /*need to be printed to stderr*/
+		print("$: Command not found\n"); /*need to be printed to stderr*/
 }
 
 /**
