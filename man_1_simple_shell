@@ -1,4 +1,4 @@
-pr 2021" "0.1" "simple_shell man page"
+.TH man 1 "15 Apr 2021" "0.1" "simple_shell man page"
 
 .SH NAME
 .B simple_shell
