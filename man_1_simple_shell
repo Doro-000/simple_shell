@@ -5,7 +5,7 @@
 - Simple shell made in C to interact with a linux operating system.
 
 .SH SYNOPSIS
-./hsh [options] [file]
+$ /hsh [options] [file]
 
 .SH DESCRIPTION
 Simple_Shell is an sh-compatible command language interpreter that executes
