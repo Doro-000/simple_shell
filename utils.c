@@ -94,7 +94,7 @@ void (*get_func(char *command))(char **)
 {
 	int i;
 	function_map mapping[] = {
-		{"env", env}, {"exit", exit}
+		{"env", env}, {"exit", quit}
 	};
 
 	for (i = 0; i < 2; i++)
