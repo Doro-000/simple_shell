@@ -26,7 +26,8 @@ int parse_command(char *command)
 		if (_strcmp(command, internal_command[i]) == 0)
 			return (INTERNAL_COMMAND);
 	}
-	if ((path = check_path(command)) != NULL)
+	path = check_path(command);
+	if (path != NULL)
 		return (PATH_COMMAND);
 
 	return (INVALID_COMMAND);
@@ -48,17 +49,17 @@ void execute_command(char **tokenized_command, int command_type)
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
 			perror("$");
 	}
-	else if (command_type == PATH_COMMAND)
+	if (command_type == PATH_COMMAND)
 	{
 		tokenized_command[0] = check_path(tokenized_command[0]);
 		execute_command(tokenized_command, EXTERNAL_COMMAND);
 	}
-	else if (command_type == INTERNAL_COMMAND)
+	if (command_type == INTERNAL_COMMAND)
 	{
 		func = get_func(tokenized_command[0]);
 		func(tokenized_command);
 	}
-	else
+	if (command_type == INVALID_COMMAND)
 		print("$: Command not found\n"); /*need to be printed to stderr*/
 }
 
@@ -76,8 +77,7 @@ char *check_path(char *command)
 
 	for (i = 0; path_array[i] != NULL; i++)
 	{
-		temp = _strcat(path_array[i], "/");
-		temp = _strcat(temp, command);
+		temp = _strcat(_strcat(path_array[i], "/"), command);
 		if (access(temp, F_OK) == 0)
 			return (temp);
 	}
@@ -113,36 +113,20 @@ void (*get_func(char *command))(char **)
  */
 char *_getenv(char *name)
 {
-	int pairs = 0, i = 0, flag = 0;
-	char **keys = NULL;
-	char **values = NULL;
-	char *token = NULL;
-	char *saveptr = NULL;
-	char *final_val = NULL;
+	char **my_environ;
+	char *pair_ptr;
+	char *name_cpy;
 
-	for (; environ[pairs] != NULL; pairs++)
-		;
-	keys = malloc(sizeof(*keys) * pairs);
-	values = malloc(sizeof(*values)  * pairs);
-	for (; environ[i] != NULL; i++)
+	for (my_environ = environ; *my_environ != NULL; my_environ++)
 	{
-		token = _strtok_r(environ[i], "=", &saveptr);
-		keys[i] = token;
-		values[i] = saveptr;
-	}
-	for (i = 0; i < pairs; i++)
-	{
-		if (_strcmp(keys[i], name) == 0)
+		for (pair_ptr = *my_environ, name_cpy = name;
+		     *pair_ptr == *name_cpy; pair_ptr++, name_cpy++)
 		{
-			flag = 1;
-			final_val = values[i];
-			break;
+			if (*pair_ptr == '=')
+				break;
 		}
+		if ((*pair_ptr == '=') && (*name_cpy == '\0'))
+			return (pair_ptr + 1);
 	}
-	free(keys);
-	free(values);
-	if (flag)
-		return (final_val);
-	else
-		return (NULL);
+	return (NULL);
 }
