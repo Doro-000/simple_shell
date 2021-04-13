@@ -48,6 +48,7 @@ char *_strchr(char *, char);
 
 /*helpers3*/
 char *_strtok_r (char *, char *, char **);
+int _atoi(char *);
 
 /*utils*/
 int parse_command(char *);
