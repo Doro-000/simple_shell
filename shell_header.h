@@ -61,4 +61,7 @@ char *_getenv(char *);
 void env(char **);
 void quit(char **);
 
+/*main*/
+void intializer(char **arg_tok);
+
 #endif /*SHELL_H*/
