@@ -32,9 +32,6 @@ typedef struct map
 
 extern char **environ;
 
-/*main_functions*/
-void intializer(char **arg_tok);
-
 /*helpers*/
 void print(char *);
 char **tokenizer(char *, char *);
