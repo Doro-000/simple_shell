@@ -90,7 +90,7 @@ char *check_path(char *command)
 		if (access(temp, F_OK) == 0)
 		{
 			free(temp2);
-			free(path_array)
+			free(path_array);
 			return (temp);
 		}
 		free(temp);
