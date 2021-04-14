@@ -51,8 +51,7 @@ int main(int argc, char **argv)
 			type_command = parse_command(current_command[0]);
 			if (type_command == EXTERNAL_COMMAND || type_command == PATH_COMMAND)
 			{
-				child = fork();
-				if (child == 0)
+				if ((child = fork()) == 0)
 					execute_command(current_command, type_command);
 				else
 					wait(NULL);
