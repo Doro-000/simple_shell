@@ -28,7 +28,10 @@ int parse_command(char *command)
 	}
 	path = check_path(command);
 	if (path != NULL)
+	{
+		free(path);
 		return (PATH_COMMAND);
+	}
 
 	return (INVALID_COMMAND);
 }
@@ -47,7 +50,10 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == EXTERNAL_COMMAND)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
+		{
+			free(tokenized_command[0]);
 			perror(_getenv("PWD"));
+		}
 	}
 	if (command_type == PATH_COMMAND)
 	{
@@ -82,8 +88,12 @@ char *check_path(char *command)
 	{
 		temp = _strcat(_strcat(path_array[i], "/"), command);
 		if (access(temp, F_OK) == 0)
+		{
+			free(path_array);
 			return (temp);
+		}
 	}
+	free(path_array);
 	return (NULL);
 }
 
