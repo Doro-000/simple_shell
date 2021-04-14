@@ -1,3 +1,4 @@
+  
 #include "shell_header.h"
 
 /**
@@ -9,21 +10,29 @@
  */
 int main(int argc, char **argv)
 {
-	char **commands = NULL;
-	char **current_command = NULL;
+	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
-	int i = 0, type_path = 0, a = 0;
 	size_t n = 0;
+	int type_command;
+	pid_t child;
 
 	if (argc > 1)
 	{
-		while (argv[a] != 0)
+		for (i = 1; argv[i] != NULL; i++)
 		{
-			current_command = tokenizer(commands[i], " ");
-			type_path = parse_command(current_command[0]);
-			intializer(current_command, type_path);
+			current_command = tokenizer(argv[i], " ");
+			type_command = parse_command(current_command[0]);
+			if (type_command == EXTERNAL_COMMAND || type_command == PATH_COMMAND)
+			{
+				child = fork();
+				if (child == 0)
+					execute_command(current_command, type_command);
+				else
+					wait(NULL);
+			}
+			else
+				execute_command(current_command, type_command);
 			free(current_command);
-			a++;
 		}
 		return (0);
 	}
@@ -39,34 +48,21 @@ int main(int argc, char **argv)
 		for (i = 0; commands[i] != NULL; i++)
 		{
 			current_command = tokenizer(commands[i], " ");
-			type_path = parse_command(current_command[0]);
-			intializer(commands, type_path);
+			type_command = parse_command(current_command[0]);
+			if (type_command == EXTERNAL_COMMAND || type_command == PATH_COMMAND)
+			{
+				child = fork();
+				if (child == 0)
+					execute_command(current_command, type_command);
+				else
+					wait(NULL);
+			}
+			else
+				execute_command(current_command, type_command);
+			free(current_command);
 		}
 		free(commands);
 	}
 	free(line);
 	return (0);
-}
-
-/**
- * intializer - starts the execution
- * @arg_tok: first checked input
- * @pars: type of command
- *
- * Return: Void function
- */
-void intializer(char **arg_tok, int pars)
-{
-	pid_t child;
-
-	if (pars == EXTERNAL_COMMAND || pars == PATH_COMMAND)
-	{
-		child = fork();
-		if (child == 0)
-			execute_command(arg_tok, pars);
-		else
-			wait(NULL);
-	}
-	else
-		execute_command(arg_tok, pars);
 }
