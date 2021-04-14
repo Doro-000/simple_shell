@@ -21,7 +21,10 @@ int main()
 	{
 		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
+		{
+			print("\n");
 			exit(EXIT_SUCCESS);
+		}
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{

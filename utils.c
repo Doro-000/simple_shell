@@ -47,7 +47,7 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == EXTERNAL_COMMAND)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
-			perror("$");
+			perror(_getenv("PWD"));
 	}
 	if (command_type == PATH_COMMAND)
 	{
@@ -60,7 +60,10 @@ void execute_command(char **tokenized_command, int command_type)
 		func(tokenized_command);
 	}
 	if (command_type == INVALID_COMMAND)
-		print("$: Command not found\n");/*need to be printed to stderr*/
+	{
+		print(_getenv("PWD"));
+		print(": Command not found\n");/*need to be printed to stderr*/
+	}
 }
 
 /**
