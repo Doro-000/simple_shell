@@ -14,7 +14,6 @@ int main(int argc, char **argv)
 	char *line = NULL;
 	size_t n = 0;
 	int type_command;
-	pid_t child;
 
 	if (argc > 1)
 	{
@@ -58,6 +57,8 @@ int main(int argc, char **argv)
 
 void initalizer(char **current_command, int type_command)
 {
+	pid_t child;
+
 	if (type_command == EXTERNAL_COMMAND || type_command == PATH_COMMAND)
 	{
 		child = fork();
