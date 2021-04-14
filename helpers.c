@@ -32,6 +32,7 @@ char **tokenizer(char *input_string, char *delim)
 		i++;
 	}
 	av[i] = NULL;
+	free(input);
 	return (av);
 }
 
