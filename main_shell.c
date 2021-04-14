@@ -50,7 +50,8 @@ int main(int argc, char **argv)
 
 /**
  * initalizer - starts exectuting everything xD
- * @arg_tok: main array to be executed
+ * @current_command: try to check current token
+ * @type_command: parse token
  *
  * Return: void function
  */
