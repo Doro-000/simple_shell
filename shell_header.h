@@ -62,6 +62,6 @@ void env(char **);
 void quit(char **);
 
 /*main*/
-void intializer(char **arg_tok, int pars);
+void initalizer(char **current_command, int type_command);
 
 #endif /*SHELL_H*/
