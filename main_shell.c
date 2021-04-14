@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
 	size_t n = 0;
-	int type_command;
+	int type_command, i = 0;
 	pid_t child;
 
 	if (argc > 1)
