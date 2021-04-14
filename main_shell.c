@@ -10,15 +10,20 @@
 int main(int argc, char **argv)
 {
 	char **commands = NULL;
+	char **current_command = NULL;
 	char *line = NULL;
-	int i = 0;
+	int i = 0, type_path = 0, a = 0;
 	size_t n = 0;
 
 	if (argc > 1)
 	{
-		while (argv[i] != 0)
+		while (argv[a] != 0)
 		{
-			intializer(argv);
+			current_command = tokenizer(command[i], " ");
+			type_path = parse_command(current_command[0]);
+			intializer(current_command, type_path);
+			free(current_command);
+			a++;
 		}
 		return (0);
 	}
@@ -31,7 +36,12 @@ int main(int argc, char **argv)
 			exit(EXIT_SUCCESS);
 		}
 		commands = tokenizer(line, ";");
-		intializer(commands, pars);
+		for (i = 0; commands[i] != NULL; i++)
+		{
+			current_command = tokenizer(command[i], " ");
+			type_path = parse_command(current_command[0]);
+			intializer(commands, pars);
+		}
 		free(commands);
 	}
 	free(line);
@@ -41,6 +51,7 @@ int main(int argc, char **argv)
 /**
  * intializer - starts the execution
  * @arg_tok: first checked input
+ * @pars: type of command
  *
  * Return: Void function
  */
@@ -48,14 +59,14 @@ void intializer(char **arg_tok, int pars)
 {
 	pid_t child;
 
-		if (pars == EXTERNAL_COMMAND || pars == PATH_COMMAND)
-		{
-			child = fork();
-			if (child == 0)
-				execute_command(arr, pars);
-			else
-				wait(NULL);
-		}
-		else
+	if (pars == EXTERNAL_COMMAND || pars == PATH_COMMAND)
+	{
+		child = fork();
+		if (child == 0)
 			execute_command(arr, pars);
+		else
+			wait(NULL);
+	}
+	else
+		execute_command(arr, pars);
 }
