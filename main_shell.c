@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	{
 		while (argv[a] != 0)
 		{
-			current_command = tokenizer(command[i], " ");
+			current_command = tokenizer(commands[i], " ");
 			type_path = parse_command(current_command[0]);
 			intializer(current_command, type_path);
 			free(current_command);
@@ -38,9 +38,9 @@ int main(int argc, char **argv)
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{
-			current_command = tokenizer(command[i], " ");
+			current_command = tokenizer(commands[i], " ");
 			type_path = parse_command(current_command[0]);
-			intializer(commands, pars);
+			intializer(commands, type_path);
 		}
 		free(commands);
 	}
@@ -63,10 +63,10 @@ void intializer(char **arg_tok, int pars)
 	{
 		child = fork();
 		if (child == 0)
-			execute_command(arr, pars);
+			execute_command(arg_tok, pars);
 		else
 			wait(NULL);
 	}
 	else
-		execute_command(arr, pars);
+		execute_command(arg_tok, pars);
 }
