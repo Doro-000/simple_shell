@@ -21,14 +21,14 @@ char *_strtok_r(char *string, char *delim, char **save_ptr)
 		return (NULL);
 	}
 
-	string += strspn(string, delim);
+	string += _strspn(string, delim);
 	if (*string == '\0')
 	{
 		*save_ptr = string;
 		return (NULL);
 	}
 
-	end = string + strcspn(string, delim);
+	end = string + _strcspn(string, delim);
 	if (*end == '\0')
 	{
 		*save_ptr = end;
