@@ -11,11 +11,15 @@ int main(int argc, char **argv)
 {
 	char **commands = NULL;
 	char *line = NULL;
+	int i = 0;
 	size_t n = 0;
 
 	if (argc > 1)
 	{
-		intializer(argv);
+		while (argv[i] != 0)
+		{
+			intializer(argv);
+		}
 		return (0);
 	}
 	while (1)
@@ -27,7 +31,7 @@ int main(int argc, char **argv)
 			exit(EXIT_SUCCESS);
 		}
 		commands = tokenizer(line, ";");
-		intializer(commands);
+		intializer(commands, pars);
 		free(commands);
 	}
 	free(line);
@@ -40,31 +44,18 @@ int main(int argc, char **argv)
  *
  * Return: Void function
  */
-void intializer(char **arg_tok)
+void intializer(char **arg_tok, int pars)
 {
 	pid_t child;
-	char **arr = NULL;
-	int pars, a = 0;
 
-	while (arg_tok[a] != NULL)
-	{
-		arr = tokenizer(*arg_tok, " ");
-		pars = parse_command(*arr);
-		if (pars == 1 || pars == 2 || pars == 4)
+		if (pars == EXTERNAL_COMMAND || pars == PATH_COMMAND)
 		{
 			child = fork();
 			if (child == 0)
-			{
 				execute_command(arr, pars);
-			}
 			else
 				wait(NULL);
 		}
 		else
-		{
 			execute_command(arr, pars);
-			free(arr);
-		}
-		a++;
-	}
 }
