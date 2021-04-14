@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 			}
 			else
 				execute_command(current_command, type_command);
+			free(current_command);
 			i++;
 		}
 		return (0);
@@ -59,7 +60,9 @@ int main(int argc, char **argv)
 			}
 			else
 				execute_command(current_command, type_command);
+			free(current_command);
 		}
+		free(commands);
 	}
 	free(line);
 	return (0);
