@@ -12,15 +12,10 @@ int main(int argc, char **argv)
 	char **commands = NULL;
 	char *line = NULL;
 	size_t n = 0;
-	int i = 1;
 
 	if (argc > 1)
 	{
-		while (argv[i] != NULL)
-		{
-			intializer(argv);
-			i++;
-		}
+		intializer(argv);
 		return (0);
 	}
 	while (1)
