@@ -61,4 +61,7 @@ char *_getenv(char *);
 void env(char **);
 void quit(char **);
 
+/*main*/
+void initalizer(char **current_command, int type_command);
+
 #endif /*SHELL_H*/
