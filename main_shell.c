@@ -10,11 +10,9 @@
 int main(int argc, char **argv)
 {
 	char **commands = NULL;
-	char **current_command = NULL;
 	char *line = NULL;
 	size_t n = 0;
-	int i = 1, type_command;
-	pid_t child;
+	int i = 1;
 
 	if (argc > 1)
 	{
