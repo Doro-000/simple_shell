@@ -62,6 +62,6 @@ void env(char **);
 void quit(char **);
 
 /*main*/
-void intializer(char **arg_tok);
+void intializer(char **arg_tok, int pars);
 
 #endif /*SHELL_H*/
