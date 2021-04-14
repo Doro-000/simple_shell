@@ -51,7 +51,6 @@ void execute_command(char **tokenized_command, int command_type)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
 		{
-			free(tokenized_command[0]);
 			perror(_getenv("PWD"));
 		}
 	}
@@ -81,17 +80,20 @@ void execute_command(char **tokenized_command, int command_type)
 char *check_path(char *command)
 {
 	char **path_array = tokenizer(_getenv("PATH"), ":");
-	char *temp;
+	char *temp, *temp2;
 	int i;
 
 	for (i = 0; path_array[i] != NULL; i++)
 	{
-		temp = _strcat(_strcat(path_array[i], "/"), command);
+		temp2 = _strcat(path_array[i], "/");
+		temp = _strcat(temp2, command);
 		if (access(temp, F_OK) == 0)
 		{
-			free(path_array);
+			free(temp2);
 			return (temp);
 		}
+		free(temp);
+		free(temp2);
 	}
 	free(path_array);
 	return (NULL);
