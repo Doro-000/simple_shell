@@ -30,6 +30,7 @@ int main(int argc, char **argv)
 		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
 		{
+			free(line);
 			print("\n");
 			exit(EXIT_SUCCESS);
 		}
