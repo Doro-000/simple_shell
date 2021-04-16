@@ -19,7 +19,6 @@ int main(void)
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);
-			print("\n");
 			exit(EXIT_SUCCESS);
 		}
 		remove_newline(line);
