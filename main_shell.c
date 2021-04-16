@@ -9,11 +9,11 @@
  */
 int main()
 {
-	char **commands = NULL, **current_command = NULL;
-	char *line = NULL;
+	char **current_command = NULL;
 	int i, type_command = 0;
 	size_t n = 0;
 
+	signal(SIGINT, ctrl_c_handler);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -22,9 +22,11 @@ int main()
 		}
 		if (getline(&line, &n, stdin) == -1)
 		{
+			free(line);
 			print("\n");
 			exit(EXIT_SUCCESS);
 		}
+		remove_newline(line);
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{
@@ -37,7 +39,6 @@ int main()
 		if (!(isatty(STDIN_FILENO)))
 			break;
 	}
-	free(line);
 	return (0);
 }
 

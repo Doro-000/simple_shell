@@ -9,29 +9,21 @@
  */
 char **tokenizer(char *input_string, char *delim)
 {
-	int num_delim = 0, i = 0;
+	int num_delim = 0;
 	char **av = NULL;
 	char *token = NULL;
 	char *save_ptr = NULL;
-	char *input = malloc(_strlen(input_string) + 1);
 
-	_strcpy(input_string, input);
-	remove_newline(input);
-	for (; input[i] != '\0'; i++)
-	{
-		if (input[i] == delim[0])
-			num_delim++;
-	}
-	i = 0;
-	av = malloc(sizeof(*av) * (num_delim + 2));
-	token = _strtok_r(input, delim, &save_ptr);
+	token = _strtok_r(input_string, delim, &save_ptr);
 	while (token != NULL)
 	{
-		av[i] = token;
+		av = _realloc(av, sizeof(*av) * num_delim, sizeof(*av) * (num_delim + 1));
+		av[num_delim] = token;
 		token = _strtok_r(NULL, delim, &save_ptr);
-		i++;
+		num_delim++;
 	}
-	av[i] = NULL;
+	av = _realloc(av, sizeof(*av) * num_delim, sizeof(*av) * (num_delim + 1));
+	av[num_delim] = NULL;
 	return (av);
 }
 
