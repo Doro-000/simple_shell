@@ -16,6 +16,11 @@ int parse_command(char *command)
 	char *internal_command[] = {"env", "exit", NULL};
 	char *path = NULL;
 
+	if (command == NULL)
+	{
+		free(line);
+		exit(EXIT_SUCCESS);
+	}
 	for (i = 0; command[i] != '\0'; i++)
 	{
 		if (command[i] == '/')
