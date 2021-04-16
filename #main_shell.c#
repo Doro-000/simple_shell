@@ -18,7 +18,7 @@ int main(int argc __attribute__((unused)), char **argv)
 	{
 		if ((!isatty(STDIN_FILENO)))
 		{
-			printf("argv");
+			
 			for (i = 1; argv[i] != NULL; i++)
 			{
 				commands = tokenizer(argv[i], ";");
