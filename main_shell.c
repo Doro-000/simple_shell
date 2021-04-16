@@ -9,11 +9,11 @@
  */
 int main(int argc, char **argv)
 {
-	char **commands = NULL, **current_command = NULL;
-	char *line = NULL;
+	char **current_command = NULL;
 	int i, type_command = 0;
 	size_t n = 0;
 
+	signal(SIGINT, ctrl_c_handler);
 	if (argc > 1)
 	{
 		for (i = 1; argv[i] != NULL; i++)
@@ -45,7 +45,6 @@ int main(int argc, char **argv)
 		}
 		free(commands);
 	}
-	free(line);
 	return (0);
 }
 

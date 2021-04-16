@@ -32,6 +32,8 @@ typedef struct map
 } function_map;
 
 extern char **environ;
+char *line;
+char **commands;
 
 /*helpers*/
 void print(char *);
@@ -51,6 +53,7 @@ char *_strchr(char *, char);
 char *_strtok_r(char *, char *, char **);
 int _atoi(char *);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void ctrl_c_handler(int);
 
 /*utils*/
 int parse_command(char *);

@@ -98,8 +98,8 @@ char *check_path(char *command)
 		free(temp);
 		free(temp2);
 	}
-	free(path_array);
 	free(path);
+	free(path_array);
 	return (NULL);
 }
 
