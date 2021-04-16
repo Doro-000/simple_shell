@@ -11,15 +11,17 @@ int main()
 {
 	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
-	int i, type_command = 0;
+	int i, type_command = 0, term = 0, out = 0;
 	size_t n = 0;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 		{
+			term++;
 			printf("$ ");
 		}
+		out++;
 		if (getline(&line, &n, stdin) == -1)
 		{
 			print("\n");
@@ -34,7 +36,7 @@ int main()
 			free(current_command);
 		}
 		free(commands);
-		if (!(isatty(STDIN_FILENO)))
+		if ((!(isatty(STDIN_FILENO))) && (out != term))
 			break;
 	}
 	free(line);
