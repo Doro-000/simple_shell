@@ -2,6 +2,8 @@
 
 /**
  * main - entry point, the main shell
+ * @argc: number of arguments passed to the shell
+ * @argv: list of arguments passed to the shell
  *
  * Return: 0 on success
  */
@@ -37,7 +39,6 @@ int main(void)
 		if (!(isatty(STDIN_FILENO)))
 			break;
 	}
-	free(line);
 	return (0);
 }
 
