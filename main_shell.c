@@ -12,17 +12,23 @@ int main(int argc, char **argv)
 {
 	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
-	int i, type_command = 0;
+	int i, k, type_command = 0;
 	size_t n = 0;
 
 	if (argc > 1)
 	{
+		printf("working argc%s\n", argv[1]);
 		for (i = 1; argv[i] != NULL; i++)
 		{
-			current_command = tokenizer(argv[i], " ");
-			type_command = parse_command(current_command[0]);
-			initalizer(current_command, type_command);
-			free(current_command);
+			commands = tokenizer(argv[i], ";");
+			for (k = 0; commands[k] != NULL; k++)
+			{
+				current_command = tokenizer(commands[k], " ");
+				type_command = parse_command(current_command[0]);
+				initalizer(current_command, type_command);
+				free(current_command);
+			}
+			free(commands);
 		}
 		return (0);
 	}
