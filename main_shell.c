@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 			print("\n");
 			exit(EXIT_SUCCESS);
 		}
+		remove_newline(line);
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{
