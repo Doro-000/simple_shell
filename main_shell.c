@@ -7,7 +7,7 @@
  *
  * Return: 0 on success
  */
-int main()
+int main(void)
 {
 	char **current_command = NULL;
 	int i, type_command = 0;
