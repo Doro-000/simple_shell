@@ -11,35 +11,34 @@ int main()
 {
 	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
-	int i, type_command = 0, term = 0, out = 0;
+	int i, type_command = 0;
 	size_t n = 0;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-		{
-			term++;
 			printf("$ ");
-		}
-		out++;
-		if (getline(&line, &n, stdin) == -1)
+		while (getline(&line, &n, stdin) != -1)
 		{
+			commands = tokenizer(line, ";");
+			for (i = 0; commands[i] != NULL; i++)
+			{
+				current_command = tokenizer(commands[i], " ");
+				type_command = parse_command(current_command[0]);
+				initalizer(current_command, type_command);
+				free(current_command);
+			}
+			free(commands);
+		}
+		else
+		{
+			free(line);
 			print("\n");
 			exit(EXIT_SUCCESS);
 		}
-		commands = tokenizer(line, ";");
-		for (i = 0; commands[i] != NULL; i++)
-		{
-			current_command = tokenizer(commands[i], " ");
-			type_command = parse_command(current_command[0]);
-			initalizer(current_command, type_command);
-			free(current_command);
-		}
-		free(commands);
-		if ((!(isatty(STDIN_FILENO))) && (out != term))
+		if ((!isatty(STDIN_FILENO)))
 			break;
 	}
-	free(line);
 	return (0);
 }
 
