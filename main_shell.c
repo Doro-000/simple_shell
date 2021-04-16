@@ -32,7 +32,6 @@ int main(void)
 				free(commands);
 			}
 			free(line);
-			print("\n");
 			exit(EXIT_SUCCESS);
 		}
 		print("$ ");
