@@ -16,24 +16,10 @@ int main(int argc __attribute__((unused)), char **argv)
 
 	while (1)
 	{
-		if ((!isatty(STDIN_FILENO)))
+		if (isatty(STDIN_FILENO))
 		{
-			printf("argv");
-			for (i = 1; argv[i] != NULL; i++)
-			{
-				commands = tokenizer(argv[i], ";");
-				for (k = 0; commands[k] != NULL; k++)
-				{
-					current_command = tokenizer(commands[k], " ");
-					type_command = parse_command(current_command[0]);
-					initalizer(current_command, type_command);
-					free(current_command);
-				}
-				free(commands);
-			}
-			return (0);
+			printf("$ ");
 		}
-		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
 		{
 			print("\n");
@@ -48,6 +34,8 @@ int main(int argc __attribute__((unused)), char **argv)
 			free(current_command);
 		}
 		free(commands);
+		if (!(isatty(STDIN_FILENO)))
+			break;
 	}
 	free(line);
 	return (0);
