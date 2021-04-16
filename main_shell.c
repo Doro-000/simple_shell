@@ -7,11 +7,11 @@
  *
  * Return: 0 on success
  */
-int main(int argc __attribute__((unused)), char **argv)
+int main()
 {
 	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
-	int i, k, type_command = 0;
+	int i, type_command = 0;
 	size_t n = 0;
 
 	while (1)
