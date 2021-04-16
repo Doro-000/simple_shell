@@ -13,7 +13,7 @@ char **tokenizer(char *input_string, char *delim)
 	char **av = NULL;
 	char *token = NULL;
 	char *save_ptr = NULL;
-	char *input = malloc(sizeof(*input) * (_strlen(input_string) + 1));
+	char *input = malloc(_strlen(input_string) + 1);
 
 	_strcpy(input_string, input);
 	remove_newline(input);
