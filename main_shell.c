@@ -37,6 +37,7 @@ int main(void)
 		if (!(isatty(STDIN_FILENO)))
 			break;
 	}
+	free(line);
 	return (0);
 }
 
