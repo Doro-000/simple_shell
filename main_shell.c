@@ -16,10 +16,25 @@ int main(void)
 	signal(SIGINT, ctrl_c_handler);
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
+		if (!(isatty(STDIN_FILENO)))
 		{
-			print("$ ");
+			while (getline(&line, &n, stdin) != -1)
+			{
+				remove_newline(line);
+				commands = tokenizer(line, ";");
+				for (i = 0; commands[i] != NULL; i++)
+				{
+					current_command = tokenizer(commands[i], " ");
+					type_command = parse_command(current_command[0]);
+					initalizer(current_command, type_command);
+					free(current_command);
+				}
+				free(commands);
+			}
+			free(line);
+			exit(EXIT_SUCCESS);
 		}
+		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);
@@ -36,9 +51,8 @@ int main(void)
 			free(current_command);
 		}
 		free(commands);
-		if (!(isatty(STDIN_FILENO)))
-			break;
 	}
+	free(line);
 	return (0);
 }
 
