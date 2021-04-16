@@ -1,4 +1,3 @@
-  
 #include "shell_header.h"
 
 /**
@@ -12,28 +11,28 @@ int main(int argc, char **argv)
 {
 	char **commands = NULL, **current_command = NULL;
 	char *line = NULL;
-	int i, k, type_command = 0;
+	int i, type_command = 0;
 	size_t n = 0;
 
-	if (argc > 1)
-	{
-		printf("working argc%s\n", argv[1]);
-		for (i = 1; argv[i] != NULL; i++)
-		{
-			commands = tokenizer(argv[i], ";");
-			for (k = 0; commands[k] != NULL; k++)
-			{
-				current_command = tokenizer(commands[k], " ");
-				type_command = parse_command(current_command[0]);
-				initalizer(current_command, type_command);
-				free(current_command);
-			}
-			free(commands);
-		}
-		return (0);
-	}
 	while (1)
 	{
+		if ((!isatty(STDIN_FILENO)))
+		{
+			printf("argv");
+			for (i = 1; argv[i] != NULL; i++)
+			{
+				commands = tokenizer(argv[i], ";");
+				for (k = 0; commands[k] != NULL; k++)
+				{
+					current_command = tokenizer(commands[k], " ");
+					type_command = parse_command(current_command[0]);
+					initalizer(current_command, type_command);
+					free(current_command);
+				}
+				free(commands);
+			}
+			return (0);
+		}
 		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
 		{
