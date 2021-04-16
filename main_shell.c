@@ -68,7 +68,7 @@ void initalizer(char **current_command, int type_command)
  *
  * Return: void
  */
-void non_interactive()
+void non_interactive(void)
 {
 	char **current_command = NULL;
 	int i, type_command = 0;
