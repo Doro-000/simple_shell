@@ -7,32 +7,26 @@
  *
  * Return: 0 on success
  */
-int main(int argc, char **argv)
+int main()
 {
-	char **commands = NULL, **current_command = NULL;
-	char *line = NULL;
+	char **current_command = NULL;
 	int i, type_command = 0;
 	size_t n = 0;
 
-	if (argc > 1)
-	{
-		for (i = 1; argv[i] != NULL; i++)
-		{
-			current_command = tokenizer(argv[i], " ");
-			type_command = parse_command(current_command[0]);
-			initalizer(current_command, type_command);
-			free(current_command);
-		}
-		return (0);
-	}
+	signal(SIGINT, ctrl_c_handler);
 	while (1)
 	{
-		print("$ ");
+		if (isatty(STDIN_FILENO))
+		{
+			printf("$ ");
+		}
 		if (getline(&line, &n, stdin) == -1)
 		{
+			free(line);
 			print("\n");
 			exit(EXIT_SUCCESS);
 		}
+		remove_newline(line);
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{
@@ -42,8 +36,9 @@ int main(int argc, char **argv)
 			free(current_command);
 		}
 		free(commands);
+		if (!(isatty(STDIN_FILENO)))
+			break;
 	}
-	free(line);
 	return (0);
 }
 

@@ -1,0 +1,3 @@
+echo \'"'hello"\'\" && echo $0 && echo \'' &&" & || | ;'\" && bash -c asdf && echo you won't see this || echo $? || echo you won't see this either;echo $? ;echo hello ;echo \h\e\l\l\o ;ASDF=helo FDSA=world ;echo $? && echo \$ASDF$ASDFFDSA$ASDF$FDSA
+echo "a'second\'line\\\with\\'\\\slashes"
+echo 'a"second\"line\\\with\\"\\\slashes'

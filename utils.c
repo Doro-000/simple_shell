@@ -50,14 +50,12 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == EXTERNAL_COMMAND)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
-		{
 			perror(_getenv("PWD"));
-		}
 	}
 	if (command_type == PATH_COMMAND)
 	{
-		tokenized_command[0] = check_path(tokenized_command[0]);
-		execute_command(tokenized_command, EXTERNAL_COMMAND);
+		if (execve(check_path(tokenized_command[0]), tokenized_command, NULL) == -1)
+			perror(_getenv("PWD"));
 	}
 	if (command_type == INTERNAL_COMMAND)
 	{
@@ -79,10 +77,13 @@ void execute_command(char **tokenized_command, int command_type)
  */
 char *check_path(char *command)
 {
-	char **path_array = tokenizer(_getenv("PATH"), ":");
-	char *temp, *temp2;
+	char **path_array = NULL;
+	char *temp, *temp2, *path;
 	int i;
 
+	path = malloc(sizeof(*path) * (_strlen(_getenv("PATH")) + 1));
+	_strcpy(_getenv("PATH"), path);
+	path_array = tokenizer(path, ":");
 	for (i = 0; path_array[i] != NULL; i++)
 	{
 		temp2 = _strcat(path_array[i], "/");
@@ -90,11 +91,14 @@ char *check_path(char *command)
 		if (access(temp, F_OK) == 0)
 		{
 			free(temp2);
+			free(path_array);
+			free(path);
 			return (temp);
 		}
 		free(temp);
 		free(temp2);
 	}
+	free(path);
 	free(path_array);
 	return (NULL);
 }
