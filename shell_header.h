@@ -34,7 +34,7 @@ typedef struct map
 extern char **environ;
 char *line;
 char **commands;
-int status = 0;
+int status;
 
 /*helpers*/
 void print(char *);

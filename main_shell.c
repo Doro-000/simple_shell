@@ -12,6 +12,7 @@ int main(void)
 	size_t n = 0;
 
 	signal(SIGINT, ctrl_c_handler);
+	status = 0;
 	while (1)
 	{
 		non_interactive();
@@ -19,7 +20,7 @@ int main(void)
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);
-			exit(EXIT_SUCCESS);
+			exit(status);
 		}
 		remove_newline(line);
 		commands = tokenizer(line, ";");
@@ -38,7 +39,7 @@ int main(void)
 		free(commands);
 	}
 	free(line);
-	return (0);
+	return (status);
 }
 
 /**
