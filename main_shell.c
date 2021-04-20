@@ -97,6 +97,6 @@ void non_interactive(void)
 			free(commands);
 		}
 		free(line);
-		exit(EXIT_SUCCESS);
+		exit(status);
 	}
 }
