@@ -12,7 +12,6 @@ int main(void)
 	size_t n = 0;
 
 	signal(SIGINT, ctrl_c_handler);
-	
 	while (1)
 	{
 		non_interactive();
