@@ -39,7 +39,7 @@ void quit(char **tokenized_command)
 	}
 	else if (num_token == 2)
 	{
-		arg = atoi(tokenized_command[1]);
+		arg = _atoi(tokenized_command[1]);
 		free(line);
 		free(tokenized_command);
 		free(commands);
