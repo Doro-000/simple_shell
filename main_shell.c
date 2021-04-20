@@ -2,8 +2,6 @@
 
 /**
  * main - entry point, the main shell
- * @argc: number of arguments passed to the shell
- * @argv: list of arguments passed to the shell
  *
  * Return: 0 on success
  */
@@ -16,14 +14,11 @@ int main(void)
 	signal(SIGINT, ctrl_c_handler);
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-		{
-			print("$ ");
-		}
+		non_interactive();
+		print("$ ");
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);
-			print("\n");
 			exit(EXIT_SUCCESS);
 		}
 		remove_newline(line);
@@ -31,14 +26,15 @@ int main(void)
 		for (i = 0; commands[i] != NULL; i++)
 		{
 			current_command = tokenizer(commands[i], " ");
+			if (current_command[0] == NULL)
+				break;
 			type_command = parse_command(current_command[0]);
 			initalizer(current_command, type_command);
 			free(current_command);
 		}
 		free(commands);
-		if (!(isatty(STDIN_FILENO)))
-			break;
 	}
+	free(line);
 	return (0);
 }
 
@@ -64,4 +60,37 @@ void initalizer(char **current_command, int type_command)
 	}
 	else
 		execute_command(current_command, type_command);
+}
+
+/**
+ * non_interactive - handles non_interactive mode
+ *
+ * Return: void
+ */
+void non_interactive(void)
+{
+	char **current_command = NULL;
+	int i, type_command = 0;
+	size_t n = 0;
+
+	if (!(isatty(STDIN_FILENO)))
+	{
+		while (getline(&line, &n, stdin) != -1)
+		{
+			remove_newline(line);
+			commands = tokenizer(line, ";");
+			for (i = 0; commands[i] != NULL; i++)
+			{
+				current_command = tokenizer(commands[i], " ");
+				if (current_command[0] == NULL)
+					break;
+				type_command = parse_command(current_command[0]);
+				initalizer(current_command, type_command);
+				free(current_command);
+			}
+			free(commands);
+		}
+		free(line);
+		exit(EXIT_SUCCESS);
+	}
 }
