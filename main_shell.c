@@ -27,7 +27,10 @@ int main(void)
 		{
 			current_command = tokenizer(commands[i], " ");
 			if (current_command[0] == NULL)
+			{
+				free(current_command);
 				break;
+			}
 			type_command = parse_command(current_command[0]);
 			initalizer(current_command, type_command);
 			free(current_command);
@@ -83,7 +86,10 @@ void non_interactive(void)
 			{
 				current_command = tokenizer(commands[i], " ");
 				if (current_command[0] == NULL)
+				{
+					free(current_command);
 					break;
+				}
 				type_command = parse_command(current_command[0]);
 				initalizer(current_command, type_command);
 				free(current_command);
