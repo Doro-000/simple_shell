@@ -39,13 +39,14 @@ void quit(char **tokenized_command)
 	}
 	else if (num_token == 2)
 	{
-		arg = _atoi(tokenized_command[1]);
 		free(line);
 		free(tokenized_command);
 		free(commands);
-		if (arg == -1)
-			exit(tokenized_command[1]);
-		exit(arg);
+		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
+		{
+			perror(_getenv("PWD"));
+			status = 2;
+		}
 	}
 	else
 		print("$: exit doesn't take more than one argument\n");
