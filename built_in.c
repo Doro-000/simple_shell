@@ -35,14 +35,16 @@ void quit(char **tokenized_command)
 		free(tokenized_command);
 		free(line);
 		free(commands);
-		exit(EXIT_SUCCESS);
+		exit(status);
 	}
 	else if (num_token == 2)
 	{
-		arg = atoi(tokenized_command[1]);
+		arg = _atoi(tokenized_command[1]);
 		free(line);
 		free(tokenized_command);
 		free(commands);
+		if (arg == -1)
+			exit(tokenized_command[1]);
 		exit(arg);
 	}
 	else

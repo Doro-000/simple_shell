@@ -59,7 +59,7 @@ void initalizer(char **current_command, int type_command)
 		if (child == 0)
 			execute_command(current_command, type_command);
 		else
-			wait(NULL);
+			wait(&status);
 	}
 	else
 		execute_command(current_command, type_command);
