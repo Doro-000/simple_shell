@@ -23,7 +23,7 @@ int main(void)
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);
-			exit(0);
+			exit(status);
 		}
 		remove_newline(line);
 		commands = tokenizer(line, ";");
@@ -37,6 +37,7 @@ int main(void)
 			}
 			type_command = parse_command(current_command[0]);
 			initalizer(current_command, type_command);
+			printf("-> %d\n", status);
 			free(current_command);
 		}
 		free(commands);
@@ -63,7 +64,11 @@ void initalizer(char **current_command, int type_command)
 		if (child == 0)
 			execute_command(current_command, type_command);
 		else
+		{
+			printf("-> %d\n", status);
 			wait(&status);
+			printf("-> %d\n", status);
+		}
 	}
 	else
 		execute_command(current_command, type_command);

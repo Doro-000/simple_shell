@@ -52,7 +52,7 @@ void execute_command(char **tokenized_command, int command_type)
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
 		{
 			perror(_getenv("PWD"));
-			kill(getpid(), SIGTERM);
+			_exit(2);
 		}
 	}
 	if (command_type == PATH_COMMAND)
@@ -60,7 +60,7 @@ void execute_command(char **tokenized_command, int command_type)
 		if (execve(check_path(tokenized_command[0]), tokenized_command, NULL) == -1)
 		{
 			perror(_getenv("PWD"));
-			kill(getpid(), SIGTERM);
+			_exit(2);
 		}
 	}
 	if (command_type == INTERNAL_COMMAND)
