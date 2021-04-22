@@ -2,7 +2,7 @@
 
 char **commands = NULL;
 char *line = NULL;
-int status;
+int status = 0;
 
 /**
  * main - entry point, the main shell
@@ -37,7 +37,6 @@ int main(void)
 			}
 			type_command = parse_command(current_command[0]);
 			initalizer(current_command, type_command);
-			printf("-> %d\n", status);
 			free(current_command);
 		}
 		free(commands);
@@ -65,9 +64,8 @@ void initalizer(char **current_command, int type_command)
 			execute_command(current_command, type_command);
 		else
 		{
-			printf("-> %d\n", status);
-			wait(&status);
-			printf("-> %d\n", status);
+			waitpid(child, &status, 0);
+			status >>= 8;
 		}
 	}
 	else

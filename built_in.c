@@ -38,7 +38,6 @@ void quit(char **tokenized_command)
 		free(tokenized_command);
 		free(line);
 		free(commands);
-		printf("->> %d\n",status);
 		exit(status);
 	}
 	else if (num_token == 2)
