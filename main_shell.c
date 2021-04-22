@@ -1,5 +1,9 @@
 #include "shell_header.h"
 
+char **commands = NULL;
+char *line = NULL;
+int status;
+
 /**
  * main - entry point, the main shell
  *
@@ -19,7 +23,7 @@ int main(void)
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);
-			exit(EXIT_SUCCESS);
+			exit(0);
 		}
 		remove_newline(line);
 		commands = tokenizer(line, ";");
@@ -38,7 +42,7 @@ int main(void)
 		free(commands);
 	}
 	free(line);
-	return (0);
+	return (status);
 }
 
 /**
@@ -59,7 +63,7 @@ void initalizer(char **current_command, int type_command)
 		if (child == 0)
 			execute_command(current_command, type_command);
 		else
-			wait(NULL);
+			wait(&status);
 	}
 	else
 		execute_command(current_command, type_command);
@@ -97,6 +101,6 @@ void non_interactive(void)
 			free(commands);
 		}
 		free(line);
-		exit(EXIT_SUCCESS);
+		exit(status);
 	}
 }
