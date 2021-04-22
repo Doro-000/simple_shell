@@ -1,5 +1,9 @@
 #include "shell_header.h"
 
+char **commands = NULL;
+char *line = NULL;
+int status;
+
 /**
  * main - entry point, the main shell
  *
@@ -10,9 +14,9 @@ int main(void)
 	char **current_command = NULL;
 	int i, type_command = 0;
 	size_t n = 0;
+	status = 0;
 
 	signal(SIGINT, ctrl_c_handler);
-	status = 0;
 	while (1)
 	{
 		non_interactive();
@@ -34,6 +38,7 @@ int main(void)
 			}
 			type_command = parse_command(current_command[0]);
 			initalizer(current_command, type_command);
+			printf("-> %d\n", status);
 			free(current_command);
 		}
 		free(commands);
@@ -60,10 +65,15 @@ void initalizer(char **current_command, int type_command)
 		if (child == 0)
 			execute_command(current_command, type_command);
 		else
+		{
 			wait(&status);
+		}
 	}
 	else
+	{
 		execute_command(current_command, type_command);
+		printf("**%d\n", status);
+	}
 }
 
 /**

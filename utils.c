@@ -50,12 +50,18 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == EXTERNAL_COMMAND)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
+		{
 			perror(_getenv("PWD"));
+			_exit(2);
+		}
 	}
 	if (command_type == PATH_COMMAND)
 	{
 		if (execve(check_path(tokenized_command[0]), tokenized_command, NULL) == -1)
+		{
 			perror(_getenv("PWD"));
+			_exit(2);
+		}
 	}
 	if (command_type == INTERNAL_COMMAND)
 	{

@@ -1,5 +1,8 @@
 #include "shell_header.h"
 
+extern char *line;
+extern char **commands;
+extern int status;
 
 /**
  * env - prints the current_environment
@@ -35,6 +38,7 @@ void quit(char **tokenized_command)
 		free(tokenized_command);
 		free(line);
 		free(commands);
+		printf("->> %d\n",status);
 		exit(status);
 	}
 	else if (num_token == 2)
