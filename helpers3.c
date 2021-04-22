@@ -1,7 +1,5 @@
 #include "shell_header.h"
 
-extern char *line;
-
 /**
  * _strtok_r - tokenizes a string
  * @string: string to be tokenized

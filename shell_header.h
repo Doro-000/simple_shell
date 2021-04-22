@@ -32,6 +32,9 @@ typedef struct map
 } function_map;
 
 extern char **environ;
+extern char *line;
+extern char **commands;
+extern int status;
 
 /*helpers*/
 void print(char *);

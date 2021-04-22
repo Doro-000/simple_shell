@@ -1,9 +1,5 @@
 #include "shell_header.h"
 
-extern char *line;
-extern char **commands;
-extern int status;
-
 /**
  * env - prints the current_environment
  * @tokenized_command: command entered
