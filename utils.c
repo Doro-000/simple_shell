@@ -52,7 +52,7 @@ void execute_command(char **tokenized_command, int command_type)
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
 		{
 			perror(_getenv("PWD"));
-			_exit(2);
+			exit(2);
 		}
 	}
 	if (command_type == PATH_COMMAND)
@@ -60,7 +60,7 @@ void execute_command(char **tokenized_command, int command_type)
 		if (execve(check_path(tokenized_command[0]), tokenized_command, NULL) == -1)
 		{
 			perror(_getenv("PWD"));
-			_exit(2);
+			exit(2);
 		}
 	}
 	if (command_type == INTERNAL_COMMAND)
@@ -71,7 +71,7 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == INVALID_COMMAND)
 	{
 		print(_getenv("PWD"));
-		print(": Command not found\n");/*need to be printed to stderr*/
+		print(": not found\n");
 	}
 }
 
