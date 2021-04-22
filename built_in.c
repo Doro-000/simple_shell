@@ -26,7 +26,7 @@ void env(char **tokenized_command __attribute__((unused)))
  */
 void quit(char **tokenized_command)
 {
-	int num_token = 0, arg;
+	int num_token = 0;
 
 	for (; tokenized_command[num_token] != NULL; num_token++)
 		;
@@ -35,15 +35,18 @@ void quit(char **tokenized_command)
 		free(tokenized_command);
 		free(line);
 		free(commands);
-		exit(EXIT_SUCCESS);
+		exit(status);
 	}
 	else if (num_token == 2)
 	{
-		arg = atoi(tokenized_command[1]);
 		free(line);
 		free(tokenized_command);
 		free(commands);
-		exit(arg);
+		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
+		{
+			perror(_getenv("PWD"));
+			status = 2;
+		}
 	}
 	else
 		print("$: exit doesn't take more than one argument\n");
