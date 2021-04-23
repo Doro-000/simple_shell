@@ -70,9 +70,9 @@ void execute_command(char **tokenized_command, int command_type)
 	}
 	if (command_type == INVALID_COMMAND)
 	{
-		print("./hsh: 1:", STDERR_FIENO);
+		print("./hsh: 1: ", STDERR_FILENO);
 		print(tokenized_command[0], STDERR_FILENO);
-		print(":not found\n", STDERR_FILENO);
+		print(": not found\n", STDERR_FILENO);
 		status = 127;
 	}
 }
