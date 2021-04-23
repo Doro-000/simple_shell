@@ -70,8 +70,10 @@ void execute_command(char **tokenized_command, int command_type)
 	}
 	if (command_type == INVALID_COMMAND)
 	{
-		print(_getenv("PWD"));
-		print(": Command not found\n");/*need to be printed to stderr*/
+		print("./hsh: 1:", STDERR_FIENO);
+		print(tokenized_command[0], STDERR_FILENO);
+		print(":not found\n", STDERR_FILENO);
+		status = 127;
 	}
 }
 
@@ -84,12 +86,15 @@ void execute_command(char **tokenized_command, int command_type)
 char *check_path(char *command)
 {
 	char **path_array = NULL;
-	char *temp, *temp2, *path;
+	char *temp, *temp2, *path_cpy;
+	char *path = _getenv("PATH");
 	int i;
 
-	path = malloc(sizeof(*path) * (_strlen(_getenv("PATH")) + 1));
-	_strcpy(_getenv("PATH"), path);
-	path_array = tokenizer(path, ":");
+	if (path == NULL || _strlen(path) == 0)
+		return (NULL);
+	path_cpy = malloc(sizeof(*path_cpy) * (_strlen(path) + 1));
+	_strcpy(path, path_cpy);
+	path_array = tokenizer(path_cpy, ":");
 	for (i = 0; path_array[i] != NULL; i++)
 	{
 		temp2 = _strcat(path_array[i], "/");
@@ -98,13 +103,13 @@ char *check_path(char *command)
 		{
 			free(temp2);
 			free(path_array);
-			free(path);
+			free(path_cpy);
 			return (temp);
 		}
 		free(temp);
 		free(temp2);
 	}
-	free(path);
+	free(path_cpy);
 	free(path_array);
 	return (NULL);
 }

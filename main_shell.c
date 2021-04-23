@@ -19,7 +19,7 @@ int main(void)
 	while (1)
 	{
 		non_interactive();
-		print("$ ");
+		print("$ ", STDOUT_FILENO);
 		if (getline(&line, &n, stdin) == -1)
 		{
 			free(line);

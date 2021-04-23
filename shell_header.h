@@ -37,7 +37,7 @@ extern char **commands;
 extern int status;
 
 /*helpers*/
-void print(char *);
+void print(char *, int);
 char **tokenizer(char *, char *);
 void remove_newline(char *);
 int _strlen(char *);
