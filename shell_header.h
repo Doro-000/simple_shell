@@ -34,6 +34,7 @@ typedef struct map
 extern char **environ;
 extern char *line;
 extern char **commands;
+extern char *shell_name;
 extern int status;
 
 /*helpers*/
