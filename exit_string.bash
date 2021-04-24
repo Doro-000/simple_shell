@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Exit with a negative number
+# Exit with a string as parameter
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="exit -98"
+shell_input="exit HBTN"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
