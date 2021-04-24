@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Exit with a string as parameter
+# Execute a command that fails, and exit without parameter
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,8 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="exit HBTN"
+shell_input="/bin/ls /test_hbtn
+exit"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
