@@ -39,10 +39,21 @@ void quit(char **tokenized_command)
 	else if (num_token == 2)
 	{
 		arg = _atoi(tokenized_command[1]);
-		free(line);
-		free(tokenized_command);
-		free(commands);
-		exit(arg);
+		if (arg == -1)
+		{
+			print(shell_name, STDERR_FILENO);
+			print(": 1: exit: Illegal number: ", STDERR_FILENO);
+			print(tokenized_command[1], STDERR_FILENO);
+			print("\n", STDERR_FILENO);
+			status = 2;
+		}
+		else
+		{
+			free(line);
+			free(tokenized_command);
+			free(commands);
+			exit(arg);
+		}
 	}
 	else
 		print("$: exit doesn't take more than one argument\n", STDERR_FILENO);
