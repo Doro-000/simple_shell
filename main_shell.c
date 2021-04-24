@@ -30,6 +30,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			exit(status);
 		}
 		remove_newline(line);
+		remove_comment(line);
 		commands = tokenizer(line, ";");
 		for (i = 0; commands[i] != NULL; i++)
 		{
@@ -91,6 +92,7 @@ void non_interactive(void)
 	{
 		while (getline(&line, &n, stdin) != -1)
 		{
+			remove_comment(line);
 			remove_newline(line);
 			commands = tokenizer(line, ";");
 			for (i = 0; commands[i] != NULL; i++)
