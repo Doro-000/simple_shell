@@ -14,7 +14,6 @@ int main(void)
 	char **current_command = NULL;
 	int i, type_command = 0;
 	size_t n = 0;
-	status = 0;
 
 	signal(SIGINT, ctrl_c_handler);
 	while (1)
@@ -65,18 +64,13 @@ void initalizer(char **current_command, int type_command)
 			execute_command(current_command, type_command);
 		else
 		{
-<<<<<<< HEAD
-			wait(&status);
-=======
 			waitpid(child, &status, 0);
 			status >>= 8;
->>>>>>> cc10b19fa46b8575930b7dd753abe1e60339fcd6
 		}
 	}
 	else
 	{
 		execute_command(current_command, type_command);
-		printf("**%d\n", status);
 	}
 }
 
