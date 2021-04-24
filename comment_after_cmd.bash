@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# The command line starts with the `#` symbol
+# Execute `/bin/echo #Comment` (nothing should be printed)
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="# This is a comment"
+shell_input="/bin/echo #This is a comment"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
