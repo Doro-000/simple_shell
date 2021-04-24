@@ -33,12 +33,13 @@ char **tokenizer(char *input_string, char *delim)
  *
  * Return: void, return nothing
  */
-void print(char *string)
+void print(char *string, char* stream)
 {
 	int i = 0;
 
+	
 	for (; string[i] != '\0'; i++)
-		write(1, &string[i], 1);
+		write(stream, &string[i], 1);
 }
 
 /**
@@ -86,6 +87,8 @@ int _strlen(char *string)
 {
 	int len = 0;
 
+	if (string == NULL)
+		return (len);
 	for (; string[len] != '\0'; len++)
 		;
 	return (len);

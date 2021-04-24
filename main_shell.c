@@ -2,20 +2,22 @@
 
 char **commands = NULL;
 char *line = NULL;
-int status = 0;
+int status;
+char *temp_name = NULL;
 
 /**
  * main - entry point, the main shell
  *
  * Return: 0 on success
  */
-int main(void)
+int main(int argc __attribute__((unused)), char *argv[])
 {
 	char **current_command = NULL;
 	int i, type_command = 0;
 	size_t n = 0;
 
 	signal(SIGINT, ctrl_c_handler);
+	temp_name = argv[0];
 	while (1)
 	{
 		non_interactive();
