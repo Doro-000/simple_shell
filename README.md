@@ -22,7 +22,7 @@ A simple UNIX command interpreter
 ## About The Project
 
 This project is a barebones clone of the sh unix command line interpreter, following the guidlines presented by staff - This being restrictions on functions we could use limited to:
-====== 
+######
 access (man 2 access)
 chdir (man 2 chdir)
 close (man 2 close)
@@ -54,8 +54,7 @@ waitpid (man 2 waitpid)
 wait3 (man 2 wait3)
 wait4 (man 2 wait4)
 write (man 2 write)
-====== 
-
+######
 
 ### Built With
 
