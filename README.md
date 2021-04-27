@@ -23,7 +23,7 @@ A simple UNIX command interpreter
 
 This project is a barebones clone of the sh unix command line interpreter, following the guidlines presented by staff - This being restrictions on functions we could use limited to:
 ######
-access (man 2 access)...
+access (man 2 access)  
 chdir (man 2 chdir)
 close (man 2 close)
 closedir (man 3 closedir)
