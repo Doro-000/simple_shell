@@ -79,11 +79,22 @@ gcc -Wall -Wextra -Werror -pedantic *.c -o ./hsh
 | utilis.c | engine of the project containing vital executer functions | 5 |
 | shell_header.h | header file | N\A |
 
+## How to use
+### Interactive mode
+```$
+./hsh [arg...]
+```
+
+### Non - Interactive mode
+```$
+echo "arg.." | ./hsh
+```
+
 ######
 
 <!-- CONTACT -->
 ## Contact
 
-Hizkyas abhera - hizkyastekle@gmail.com
+Hizkyas Aberra - hizkyastekle@gmail.com
 
 Philimon Derib - philimonderib2019@gmail.com
