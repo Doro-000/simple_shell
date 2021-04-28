@@ -65,12 +65,16 @@ write (man 2 write)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+The shell is executed by compiling the c files, and starting the executable file.
+```$
+gcc -Wall -Wextra -Werror -pedantic *.c -o ./hsh
+```
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 ######
 
 <!-- CONTACT -->
 ## Contact
 
-Hizkyas abhera - 
+Hizkyas abhera - hizkyastekle@gmail.com
+
 Philimon Derib - philimonderib2019@gmail.com
