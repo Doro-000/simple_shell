@@ -69,6 +69,15 @@ The shell is executed by compiling the c files, and starting the executable file
 ```$
 gcc -Wall -Wextra -Werror -pedantic *.c -o ./hsh
 ```
+| C files        | Main Content Description | Function count  |
+| ------------- |:-------------:| -----:|
+| built_in.c | contains exit and env functions | 2 |
+| helpers.c | contains helper functions and main tokenizer function | 5 |
+| helpers2.c | contains helper functions for strtok_r | 5 |
+| helpers3.c | assortment of functions like realloc and strtok_r | 5 |
+| main_shell.c | contains main functions and disassembled functions for main | 3 |
+| utilis.c | engine of the project containing vital executer functions | 5 |
+| shell_header.h | header file | N\A |
 
 ######
 
