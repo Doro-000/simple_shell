@@ -10,16 +10,17 @@ $ /hsh [options] [file]
 .SH DESCRIPTION
 Simple_Shell is a command language interpreter that executes
 commands read from the standard input.
+Clone of sh
 
-.SH Return
+.SH Return Value
 
-Always 0 for success, number means exit failt codes
+Always returns the status of the previously executed command( 0 if no command was executed) , number means exit failt codes
 
 .SH PATH
 
 looks in PATH env variable for executable program file location.
 
-.SH
+.SH 
 
 .SH OPTIONS
 .B simple_shell
@@ -28,8 +29,9 @@ Command options will be typed after the main command followed by a space and a
 
 .SH EXAMPLE
 
-[command] [options]
+./hsh [command] [options]
 $ ls -l
+
 
 .SH BUGS
 
