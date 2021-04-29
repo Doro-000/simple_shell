@@ -12,8 +12,8 @@ void env(char **tokenized_command __attribute__((unused)))
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		print(environ[i]);
-		print("\n");
+		print(environ[i], STDOUT_FILENO);
+		print("\n", STDOUT_FILENO);
 	}
 }
 
@@ -46,5 +46,5 @@ void quit(char **tokenized_command)
 		exit(arg);
 	}
 	else
-		print("$: exit doesn't take more than one argument\n");
+		print("$: exit doesn't take more than one argument\n", STDOUT_FILENO);
 }

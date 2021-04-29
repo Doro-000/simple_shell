@@ -35,9 +35,10 @@ extern char **environ;
 extern char *line;
 extern char **commands;
 extern int status;
+extern char* temp_name;
 
 /*helpers*/
-void print(char *);
+void print(char *, int);
 char **tokenizer(char *, char *);
 void remove_newline(char *);
 int _strlen(char *);

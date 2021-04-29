@@ -70,9 +70,10 @@ void execute_command(char **tokenized_command, int command_type)
 	if (command_type == INVALID_COMMAND)
 	{
 		print(temp_name, STDERR_FILENO);
-		print(": 1:", STDERR_FILENO);
+		print(": 1: ", STDERR_FILENO);
 		print(tokenized_command[0], STDERR_FILENO);
-		print("not found\n", STDERR_FILENO);
+		print(": not found\n", STDERR_FILENO);
+		status = 127;
 	}
 }
 
@@ -86,6 +87,7 @@ char *check_path(char *command)
 {
 	char **path_array = NULL;
 	char *temp, *temp2, *path = _getenv("PATH");
+	char *path_T = NULL;
 	int i;
 
 	if (path == NULL || _strlen(path) == 0)
