@@ -80,8 +80,9 @@ gcc -Wall -Wextra -Werror -pedantic *.c -o ./hsh
 | shell_header.h | header file | N\A |
 
 ## How to use
+### Interactive mode
 
-![### Interactive mode](https://github.com/Doro-000/simple_shell/blob/master/image_2021-04-29_11-41-41.png?raw=true)
+![](https://github.com/Doro-000/simple_shell/blob/master/image_2021-04-29_11-41-41.png?raw=true)
 
 ### Non - Interactive mode
 ```$
